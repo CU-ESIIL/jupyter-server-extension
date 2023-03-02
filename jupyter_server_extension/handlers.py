@@ -330,10 +330,10 @@ class IFrameProxyHandler(IPythonHandler):
 ######################################
 ######################################
 
-# class MaapEnvironmentHandler(IPythonHandler):
-#     def get(self, **params):  
-#         env = get_maap_config(self.request.host)
-#         self.finish(env)
+ class MaapEnvironmentHandler(IPythonHandler):
+     def get(self, **params):  
+         env = get_maap_config(self.request.host)
+         self.finish(env)
 
 # class MaapLoginHandler(IPythonHandler):
 #     def get(self, **params):
@@ -569,7 +569,7 @@ def setup_handlers(web_app):
 
     # MAAPSEC
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "maapsec", "environment"), MaapEnvironmentHandler)])
-    web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "maapsec", "login"), MaapLoginHandler)])
+   # web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "maapsec", "login"), MaapLoginHandler)])
 
     # EDSC
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "edsc", "getGranules"), GetGranulesHandler)])
