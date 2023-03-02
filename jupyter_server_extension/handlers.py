@@ -330,10 +330,11 @@ class IFrameProxyHandler(IPythonHandler):
 ######################################
 ######################################
 
- class MaapEnvironmentHandler(IPythonHandler):
-     def get(self, **params):  
-         env = get_maap_config(self.request.host)
-         self.finish(env)
+class MaapEnvironmentHandler(IPythonHandler):
+
+    def get(self, **params):  
+        env = get_maap_config(self.request.host)
+        self.finish(env)
 
 # class MaapLoginHandler(IPythonHandler):
 #     def get(self, **params):
