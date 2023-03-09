@@ -315,10 +315,13 @@ class IFrameHandler(IPythonHandler):
 
 class IFrameProxyHandler(IPythonHandler):
     def get(self):
+        print('Processing edsc proxy request', url)
         url = self.request.get_argument('url', '')
         if url:
+            print(url)
             self.finish(requests.get(url, headers=self.request.headers).text)
         else:
+            print('Could not find url')
             self.finish('')
 
 
@@ -575,7 +578,7 @@ def setup_handlers(web_app):
     # EDSC
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "edsc", "getGranules"), GetGranulesHandler)])
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "edsc", "getQuery"), GetQueryHandler)])
-    web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "edsc"), IFrameHandler, {'welcome': welcome, 'sites': sites}), (url_path_join(base_url, 'jupyter-server-extension/edsc/proxy'), IFrameProxyHandler)])
+    web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "edsc"), IFrameHandler, {'welcome': welcome, 'sites': sites}), (url_path_join(base_url, "jupyter-server-extension", "edsc", "proxy"), IFrameProxyHandler)])
 
     # USER WORKSPACE MANAGEMENT
     web_app.add_handlers(host_pattern, [(url_path_join(base_url, "jupyter-server-extension", "uwm", "test"), RouteTestHandler)])
