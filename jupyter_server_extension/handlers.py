@@ -315,10 +315,11 @@ class IFrameHandler(IPythonHandler):
 
 class IFrameProxyHandler(IPythonHandler):
     def get(self):
-        url = self.request.get_argument('url', '')
-        print('Processing edsc proxy request', url)
-        if url:
-            print(url)
+        print(self.request.arguments)
+        if 'url' in self.request.arguments:
+            url = self.request.arguments['url']
+            print('Processing edsc proxy request', url)
+            print(self.request.headers)
             self.finish(requests.get(url, headers=self.request.headers).text)
         else:
             print('Could not find url')
