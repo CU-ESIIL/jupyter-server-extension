@@ -315,8 +315,8 @@ class IFrameHandler(IPythonHandler):
 
 class IFrameProxyHandler(IPythonHandler):
     def get(self):
-        print('Processing edsc proxy request', url)
         url = self.request.get_argument('url', '')
+        print('Processing edsc proxy request', url)
         if url:
             print(url)
             self.finish(requests.get(url, headers=self.request.headers).text)
